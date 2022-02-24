@@ -14,7 +14,7 @@ const navbar = () => {
                     <Nav.Link as={Link} to="/users">Users</Nav.Link>
                     </Nav>
                     <Nav>
-                        <Nav.Link href="#deets">Github</Nav.Link>
+                        <Nav.Link href="https://github.com/DembaDiack/teamxapi" target="_blank" >Github</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
