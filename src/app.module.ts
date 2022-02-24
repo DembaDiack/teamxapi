@@ -10,7 +10,7 @@ import {ServeStaticModule} from "@nestjs/serve-static";
 
 
 let serveStatic = ServeStaticModule.forRoot({
-  rootPath: resolve(__dirname, "Client", "build", "index.html"),
+  rootPath: join(__dirname, '..', 'client'),
   });
 let imports = [ProductsModule,UsersModule,MongooseModule.forRoot(CONFIG.db_uri)];
 if(process.env.NODE_ENV == "production")
