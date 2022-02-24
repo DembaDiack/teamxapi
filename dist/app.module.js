@@ -17,7 +17,7 @@ const users_module_1 = require("./users/users.module");
 const path_1 = require("path");
 const serve_static_1 = require("@nestjs/serve-static");
 let serveStatic = serve_static_1.ServeStaticModule.forRoot({
-    rootPath: (0, path_1.join)(__dirname, "../../../", "build"),
+    rootPath: (0, path_1.join)(__dirname, "../../../", "client", "build"),
 });
 let imports = [products_module_1.ProductsModule, users_module_1.UsersModule, mongoose_1.MongooseModule.forRoot(config_1.default.db_uri)];
 if (process.env.NODE_ENV == "production") {
