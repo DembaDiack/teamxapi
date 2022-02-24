@@ -1,10 +1,11 @@
 import { React,useState,useEffect } from "react";
 import { Container,Form,Button,Spinner } from "react-bootstrap";
-import { createUser } from "../services/user.service";
-import {useNavigate} from "react-router-dom";
+import { createUser, editUser, getUser } from "../services/user.service";
+import {useNavigate, useParams} from "react-router-dom";
 
 const CreateUser = () => {
     const navigate = useNavigate();
+    const params = useParams();
 
     const initialState = {
         loading : false
@@ -20,27 +21,29 @@ const CreateUser = () => {
         console.log(state);
     }
 
+    
     useEffect(async ()=>{
+        console.log(1);
         if(params.id)
         {
-            const product = await getProduct(params.id);
+            const user = await getUser(params.id);
             setState({
                 ...state,
-                ...product.data
+                ...user.data
             });
             console.log(state);
         }
     },[]);
 
     const handleSubmit = async event => {
-        // event.preventDefault();
-        // setState({ ...state, loading: true });
-        // createUser(state)
-        // .then(result => {
-        //     console.log(result);
-        //     return navigate("/users");
-        // })
-        // .finally(()=>{setState(initialState);})   
+        event.preventDefault();
+        setState({ ...state, loading: true });
+        editUser(state)
+        .then(result => {
+            console.log(result);
+            return navigate("/users");
+        })
+        .finally(()=>{setState(initialState);})   
     }
 
     return (
@@ -48,15 +51,15 @@ const CreateUser = () => {
             <Form>
                 <Form.Group className="mb-3" controlId="formBasicText">
                     <Form.Label>Firstname</Form.Label>
-                    <Form.Control onInput={(e) => handleInput(e)} name="firstname" type="text" placeholder="Enter first name" />
+                    <Form.Control defaultValue={state.firstname} onInput={(e) => handleInput(e)} name="firstname" type="text" placeholder="Enter first name" />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicText">
                     <Form.Label>Lastname</Form.Label>
-                    <Form.Control onInput={(e) => handleInput(e)} name="lastname" type="text" placeholder="Enter last name" />
+                    <Form.Control defaultValue={state.lastname} onInput={(e) => handleInput(e)} name="lastname" type="text" placeholder="Enter last name" />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicText">
                     <Form.Label>Address</Form.Label>
-                    <Form.Control onInput={(e) => handleInput(e)} name="address" type="text" placeholder="Enter adress" />
+                    <Form.Control defaultValue={state.address} onInput={(e) => handleInput(e)} name="address" type="text" placeholder="Enter adress" />
                 </Form.Group>
                 
 

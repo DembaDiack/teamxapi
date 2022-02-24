@@ -3,6 +3,7 @@ import { Routes, Route, useMatch, Router, Link } from "react-router-dom";
 import { Tabs, Tab, Container, Nav } from "react-bootstrap";
 import CreateUser from "./components/createUser";
 import ListUsers from "./components/listUsers";
+import EditUser from "./components/editUser";
 
 const Users = () => {
 
@@ -19,6 +20,7 @@ const Users = () => {
             <Routes>
             <Route path={`/`} element={<ListUsers />} />
             <Route path={`/create`} element={<CreateUser />} />
+            <Route path={"/edit/:id"} element={<EditUser/>}/>
             </Routes>
         </Container>
     )

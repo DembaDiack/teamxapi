@@ -27,15 +27,15 @@ export class UsersController
         return this.UserService.addUser(firstname,lastname,address);
     }
 
-    @Patch()
+    @Patch(":id")
     editUser(
-        @Body("id") id:string,
+        @Param("id") id:string,
         @Body("firstname") firstname:string,
         @Body("lastname") lastname:string,
         @Body("address") address:string
     ):Promise<User>
     {
-        return this.editUser(id,firstname,lastname,address);
+        return this.UserService.editUser(id,firstname,lastname,address);
     }
 
     @Delete(":id")

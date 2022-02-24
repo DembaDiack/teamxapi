@@ -30,7 +30,7 @@ let UsersController = class UsersController {
         return this.UserService.addUser(firstname, lastname, address);
     }
     editUser(id, firstname, lastname, address) {
-        return this.editUser(id, firstname, lastname, address);
+        return this.UserService.editUser(id, firstname, lastname, address);
     }
     deleteUserById(id) {
         return this.UserService.deleteUser(id);
@@ -59,8 +59,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "AddUser", null);
 __decorate([
-    (0, common_1.Patch)(),
-    __param(0, (0, common_1.Body)("id")),
+    (0, common_1.Patch)(":id"),
+    __param(0, (0, common_1.Param)("id")),
     __param(1, (0, common_1.Body)("firstname")),
     __param(2, (0, common_1.Body)("lastname")),
     __param(3, (0, common_1.Body)("address")),
