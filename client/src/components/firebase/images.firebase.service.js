@@ -8,8 +8,13 @@ const firebase = initializeApp(config);
 const uploadImage = (state, setState) => {
     console.log(state);
     let file = state.image;
+    let filename = "generic.png";
+    if(state.filename)
+    {
+        filename = state.filename;
+    }    
     var storage = getStorage(firebase);
-    var storageRef = ref(storage, state.filename);
+    var storageRef = ref(storage, `/images/${filename}`);
 
     const uploadTask = uploadBytesResumable(storageRef, file);
     setState({

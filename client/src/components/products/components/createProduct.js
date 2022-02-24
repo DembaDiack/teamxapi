@@ -30,8 +30,10 @@ const CreateProduct = () => {
                 image : event.target.files[0],
                 filename : event.target.files[0].name
             });
+            console.log(state);
+            uploadImage(state,setState);
         }
-        uploadImage(state,setState);
+        
     }
 
     const handleSubmit = async event => {
