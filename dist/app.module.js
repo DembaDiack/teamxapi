@@ -14,11 +14,20 @@ const products_module_1 = require("./products/products.module");
 const mongoose_1 = require("@nestjs/mongoose");
 const config_1 = require("./config");
 const users_module_1 = require("./users/users.module");
+const path_1 = require("path");
+const serve_static_1 = require("@nestjs/serve-static");
+let serveStatic = serve_static_1.ServeStaticModule.forRoot({
+    rootPath: (0, path_1.resolve)(__dirname, "client", "build"),
+});
+let imports = [products_module_1.ProductsModule, users_module_1.UsersModule, mongoose_1.MongooseModule.forRoot(config_1.default.db_uri)];
+if (process.env.NODE_ENV == "production") {
+    imports.push(serveStatic);
+}
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [products_module_1.ProductsModule, users_module_1.UsersModule, mongoose_1.MongooseModule.forRoot(config_1.default.db_uri)],
+        imports: imports,
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })

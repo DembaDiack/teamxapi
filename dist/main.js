@@ -4,9 +4,14 @@ const core_1 = require("@nestjs/core");
 const app_module_1 = require("./app.module");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
-    app.setGlobalPrefix('api');
     app.enableCors();
-    await app.listen(parseInt(process.env.PORT) || 4000);
+    if (process.env.NODE_ENV == "production") {
+        app.setGlobalPrefix('api');
+        await app.listen(parseInt(process.env.PORT) || 4000);
+    }
+    else {
+        await app.listen(4000);
+    }
 }
 bootstrap();
 //# sourceMappingURL=main.js.map
