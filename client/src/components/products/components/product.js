@@ -1,7 +1,7 @@
 import { React, useEffect } from "react";
 import { Row, Col, Card ,Button} from "react-bootstrap";
 import {deleteProduct} from "../services/products.service";
-import {Link} from "react-router-dom";
+import {useNavigate,Link} from "react-router-dom";
 
 const Product = (props) => {
     const handleDelete = (id)=>{

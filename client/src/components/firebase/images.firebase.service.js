@@ -6,9 +6,10 @@ import { getStorage, ref, uploadBytesResumable,getDownloadURL } from "firebase/s
 const firebase = initializeApp(config);
 
 const uploadImage = (state, setState) => {
+    console.log(state);
     let file = state.image;
     var storage = getStorage(firebase);
-    var storageRef = ref(storage, file.name);
+    var storageRef = ref(storage, state.filename);
 
     const uploadTask = uploadBytesResumable(storageRef, file);
     setState({

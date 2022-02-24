@@ -2,8 +2,11 @@ import { React, useEffect, useState } from "react";
 import { Form, Button, Container,Spinner,ProgressBar } from "react-bootstrap";
 import { createProduct } from "../services/products.service";
 import {uploadImage} from "../../firebase/images.firebase.service";
+import {useNavigate} from "react-router-dom";
 
 const CreateProduct = () => {
+    const navigate = useNavigate();
+
     const initialState = {
         loading: false,
         image : null,
@@ -21,7 +24,13 @@ const CreateProduct = () => {
     }
 
     const handleImageUpload = async event => {
-        if(event.target.files[0].type.split("/")[0] == "image") setState({...state,image : event.target.files[0]});
+        if(event.target.files[0].type.split("/")[0] == "image"){
+            setState({
+                ...state,
+                image : event.target.files[0],
+                filename : event.target.files[0].name
+            });
+        }
         uploadImage(state,setState);
     }
 
@@ -29,7 +38,10 @@ const CreateProduct = () => {
         event.preventDefault();
         setState({ ...state, loading: true });
         createProduct(state)
-        .then(result => console.log(result))
+        .then(result => {
+            console.log(result);
+            return navigate("/products");
+        })
         .finally(()=>{setState(initialState);})   
     }
 
