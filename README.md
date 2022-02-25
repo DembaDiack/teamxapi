@@ -1,6 +1,7 @@
 ## Description
 
 API Nest - FrontEnd React
+DB : MongoDB + Firebase(images)
 
 ##
 Lien : [teamxapi](https://teamxapi.herokuapp.com)
