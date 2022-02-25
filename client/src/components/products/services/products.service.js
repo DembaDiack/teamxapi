@@ -15,8 +15,9 @@ const deleteProduct = async (id)=>{
 const getProduct = async (id)=>{
     return await axios.get(`/products/${id}`);
 }
-const editProduct = async (product)=> {
-    return await axios.patch(`/products/${product._id}`,product);
+const editProduct = async (id,product)=> {
+    console.log("editing product : ",id,product);
+    return await axios.patch(`/products/${id}`,product);
 }
 export 
 {

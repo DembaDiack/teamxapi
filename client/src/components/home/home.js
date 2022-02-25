@@ -13,13 +13,13 @@ const home = () => {
                 <Container className="mt-2">
                     <Row className="align-items-center">
                         <Col sm={5}>
-                            <Image src={ReactLogo} height={250} width={250} />
+                            <Image src={ReactLogo} height={250} width={250} className={"doDaSpin"} />
                         </Col>
                         <Col sm={2}>
-                            <Image src={PlusLogo} height={50} width={50} />
+                            <Image src={PlusLogo} height={50} width={50} className={""}/>
                         </Col>
                         <Col sm={5}>
-                            <Image src={NestLogo} height={250} width={250} />
+                            <Image src={NestLogo} height={250} width={250} className={"rotate-in-2-cw"} />
                         </Col>
                     </Row>
                 </Container>
@@ -92,7 +92,6 @@ const home = () => {
                             <ButtonGroup aria-label="Basic example" className="mt-3"> 
                                 <Button variant="secondary" as={Link} to="/products/create">Create</Button>
                                 <Button variant="secondary" as={Link} to="/products/">List</Button>
-                                <Button variant="secondary" as={Link} to="/products/edit">Edit</Button>
                             </ButtonGroup>
                         </Accordion.Body>
                     </Accordion.Item>
@@ -155,7 +154,6 @@ const home = () => {
                             <ButtonGroup aria-label="Basic example" className="mt-3"> 
                                 <Button variant="secondary" as={Link} to="/users/create">Create</Button>
                                 <Button variant="secondary" as={Link} to="/users/">List</Button>
-                                <Button variant="secondary" as={Link} to="/users/edit">Edit</Button>
                             </ButtonGroup>
                         </Accordion.Body>
                     </Accordion.Item>

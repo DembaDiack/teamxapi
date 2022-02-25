@@ -6,7 +6,7 @@ import { getStorage, ref, uploadBytesResumable,getDownloadURL } from "firebase/s
 const firebase = initializeApp(config);
 
 const uploadImage = (fn,file,callback) => {
-    let filename = "generic.png";
+    let filename = `${Math.random()}.png`;
     if(fn)
     {
         filename = fn;

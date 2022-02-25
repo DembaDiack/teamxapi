@@ -25,13 +25,19 @@ const EditProduct = () => {
 
     const handleImageUpload = async event => {
         if(event.target.files[0].type.split("/")[0] == "image") setState({...state,image : event.target.files[0]});
-        uploadImage(state,setState);
+        return await uploadImage(state.filename,event.target.files[0],(data)=>{
+            setState({
+                ...state,
+                ...data
+            })
+            console.log("cb : ",data);
+        });
     }
 
     const handleSubmit = async event => {
         event.preventDefault();
         setState({ ...state, loading: true });
-        editProduct(state)
+        editProduct(params.id,state)
         .then(result => {
             console.log(result);
             return navigate("/products");
@@ -60,7 +66,7 @@ const EditProduct = () => {
             <Form>
                 {
                     state.image ? 
-                    <img src={state.image} width={700} height={"auto"} className="mb-5"/>
+                    <img src={state.image} key={state.image} width={700} height={"auto"} className="mb-5"/>
                     : null
                 }
                 <Form.Group className="mb-3" controlId="formBasicText">
@@ -92,7 +98,7 @@ const EditProduct = () => {
                             <span className="visually-hidden">Loading...</span>
                         </Spinner>
                         :
-                        <Button variant="primary" type="button" onClick={handleSubmit}>
+                        <Button variant="primary" type="button" onClick={handleSubmit} disabled={state.uploading}>
                             Edit
                         </Button>
                 }
