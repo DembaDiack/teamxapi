@@ -12,10 +12,10 @@ const Product = (props) => {
     }
     return (
 
-        <Card style={{ width: '18rem' }}>
+        <Card style={{ width: '18rem' ,display : "grid", justifyItems : "center"}}>
             {
                 props.imageURL ? 
-                <Card.Img variant="top" src={props.imageURL} height={150} width={150}/>
+                <Card.Img variant="top" src={props.imageURL} height={150} width={"auto"}/>
                 :null
             }
             <Card.Body>

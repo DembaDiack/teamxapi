@@ -29,7 +29,7 @@ const home = () => {
                     <Accordion.Item eventKey="0">
                         <Accordion.Header>How it works</Accordion.Header>
                         <Accordion.Body>
-                            the app uses a powerfull Nest back-end, with images store in firebase firestore
+                            the app uses a powerfull Nest back-end, with images stored in firebase firestore
                             <br />
                         </Accordion.Body>
                     </Accordion.Item>
