@@ -16,4 +16,13 @@ async function bootstrap() {
   }
   
 }
-bootstrap();
+
+try
+{
+  
+  bootstrap();
+}
+catch(error)
+{
+  bootstrap();
+}
