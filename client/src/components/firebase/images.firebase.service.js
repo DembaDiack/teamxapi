@@ -5,23 +5,16 @@ import { getStorage, ref, uploadBytesResumable,getDownloadURL } from "firebase/s
 
 const firebase = initializeApp(config);
 
-const uploadImage = (state, setState) => {
-    console.log(state);
-    let file = state.image;
+const uploadImage = (fn,file,callback) => {
     let filename = "generic.png";
-    if(state.filename)
+    if(fn)
     {
-        filename = state.filename;
+        filename = fn;
     }    
     var storage = getStorage(firebase);
-    var storageRef = ref(storage, `/images/${filename}`);
+    var storageRef = ref(storage, `${filename}`);
 
     const uploadTask = uploadBytesResumable(storageRef, file);
-    setState({
-        ...state,
-        uploading : true,
-        progress : 0
-    })
     // Register three observers:
     // 1. 'state_changed' observer, called any time the state changes
     // 2. Error observer, called on failure
@@ -30,10 +23,11 @@ const uploadImage = (state, setState) => {
         (snapshot) => {
             // Observe state change events such as progress, pause, and resume
             // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            setState({
-                ...state,
-                progress : progress
+            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100 | 0;
+            callback({
+                progress : progress,
+                uploading : true,
+                uploadError : false
             })
             switch (snapshot.state) {
                 case 'paused':
@@ -46,8 +40,9 @@ const uploadImage = (state, setState) => {
         },
         (error) => {
             // Handle unsuccessful uploads
-            setState({
-                ...state,
+            console.log(error);
+            callback({
+                progress : 0,
                 uploading : false,
                 uploadError : true
             })
@@ -57,11 +52,11 @@ const uploadImage = (state, setState) => {
             // For instance, get the download URL: https://firebasestorage.googleapis.com/...
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                 console.log('File available at', downloadURL);
-                setState({
-                    ...state,
-                    imageURL : downloadURL,
+                callback({
+                    progress : 100,
                     uploading : false,
-                    uploadError : false
+                    uploadError : false,
+                    imageURL : downloadURL
                 })
             });
         }

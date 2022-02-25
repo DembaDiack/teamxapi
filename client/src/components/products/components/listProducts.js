@@ -52,7 +52,7 @@ const ListProducts = () => {
             })
     }
     return (
-        <Container fluid="md">
+        <Container fluid="md" style={{display : "grid",gridColumnGap : "15px",justifyItems : "center"}}>
             <div>
                 <h1>
                     Product List

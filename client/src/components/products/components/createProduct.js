@@ -23,17 +23,30 @@ const CreateProduct = () => {
         console.log(state);
     }
 
-    const handleImageUpload = async event => {
+    const handleImageUpload = async(event) => {
+        setState({
+            ...state,
+            image :null,
+            filename : null,
+            uploading : false
+        })
+        console.log(event.target.files);
         if(event.target.files[0].type.split("/")[0] == "image"){
             setState({
                 ...state,
+                uploading : true,
                 image : event.target.files[0],
                 filename : event.target.files[0].name
             });
             console.log(state);
-            uploadImage(state,setState);
+            return await uploadImage(state.filename,event.target.files[0],(data)=>{
+                setState({
+                    ...state,
+                    ...data
+                })
+                console.log("cb : ",data);
+            });
         }
-        
     }
 
     const handleSubmit = async event => {
@@ -83,7 +96,7 @@ const CreateProduct = () => {
                             <span className="visually-hidden">Loading...</span>
                         </Spinner>
                         :
-                        <Button variant="primary" type="button" onClick={handleSubmit}>
+                        <Button variant="primary" type="button" onClick={handleSubmit} disabled={state.uploading}>
                             Submit
                         </Button>
                 }
