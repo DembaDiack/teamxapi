@@ -2,11 +2,11 @@ import { React, useEffect, useState } from "react";
 import { Form, Button, Container,Spinner,ProgressBar } from "react-bootstrap";
 import { createProduct,getProduct,editProduct } from "../services/products.service";
 import {uploadImage} from "../../firebase/images.firebase.service";
-import {useParams} from "react-router-dom";
+import {useParams,useNavigate} from "react-router-dom";
 
 const EditProduct = () => {
     const params = useParams();
-
+    const navigate = useNavigate(); 
     const initialState = {
         loading: false,
         image : null,
@@ -32,7 +32,10 @@ const EditProduct = () => {
         event.preventDefault();
         setState({ ...state, loading: true });
         editProduct(state)
-        .then(result => console.log(result))
+        .then(result => {
+            console.log(result);
+            return navigate("/products");
+        })
         .finally(()=>{setState(initialState);})   
     }
 
