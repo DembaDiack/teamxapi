@@ -12,6 +12,7 @@ import Navbar from "./components/navbar/navbar";
 import Products from "./components/products/products";
 import Home from "./components/home/home";
 import Users from "./components/users/users";
+import Footer from "./components/footer/footer";
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
         <Route exact path='/products/*' element={<Products/>} />
         <Route exact path='/users/*' element={<Users/>} />
       </Routes>
+      <Footer/>
       </div>
     </Router>
   );

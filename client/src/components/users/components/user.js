@@ -21,7 +21,7 @@ const User = props => {
                     {props.address}
                 </ListGroup.Item>
                 <ListGroup.Item>
-                <Button variant="light" as={Link} to={`edit/${props._id}`}>edit</Button>
+                <Button variant="light" as={Link} to={`edit/${props._id}`}>View/Edit</Button>
                 <Button variant="dark" onClick={(e)=>handleDelete(props._id)}>delete</Button>
                 </ListGroup.Item>
             </ListGroup>

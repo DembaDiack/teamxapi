@@ -58,6 +58,11 @@ const EditProduct = () => {
     return (
         <Container>
             <Form>
+                {
+                    state.image ? 
+                    <img src={state.image} width={700} height={"auto"} className="mb-5"/>
+                    : null
+                }
                 <Form.Group className="mb-3" controlId="formBasicText">
                     <Form.Label>Product Name</Form.Label>
                     <Form.Control defaultValue={state.name} onInput={(e) => handleInput(e)} name={"name"} type="text" placeholder="Enter product name" />

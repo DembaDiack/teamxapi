@@ -26,7 +26,7 @@ const Product = (props) => {
                     Quantity : {props.quantity}
                 </Card.Text>
                 <Row>
-                    <Col sm={6}><Button variant="primary" as={Link} to={`edit/${props._id}`}>Edit</Button></Col>
+                    <Col sm={6}><Button variant="primary" as={Link} to={`edit/${props._id}`}>View/Edit</Button></Col>
                     <Col sm={6}><Button variant="danger" onClick={(e)=>handleDelete(props._id)}>Delete</Button></Col>
                 </Row>
             </Card.Body>
