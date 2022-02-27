@@ -61,6 +61,7 @@ const CreateProduct = () => {
     }
 
     useEffect(()=>{
+        //test
         console.log(state);
     },[state]);
 
