@@ -1,5 +1,6 @@
 import axios from "axios";
-axios.defaults.baseURL = "http://localhost:4000";
+const PORT = process.env.PORT || 4000;
+axios.defaults.baseURL = `http://localhost:${PORT}`;
 
 const createUser = async (user)=>{
     console.log(user);
